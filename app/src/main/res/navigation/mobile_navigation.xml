@@ -3,8 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_transform">
+    app:startDestination="@+id/cargarFragment">
 
+    <!-- Fragment de Cargar -->
+    <fragment
+        android:id="@+id/cargarFragment"
+        android:name="com.example.tp4moviles.ui.fragments.CargarFragment"
+        android:label="Cargar"
+        tools:layout="@layout/fragment_cargar" />
+
+    <!-- Fragment de Lista -->
+    <fragment
+        android:id="@+id/listaFragment"
+        android:name="com.example.tp4moviles.ui.fragments.ListaFragment"
+        android:label="Listar"
+        tools:layout="@layout/fragment_lista" />
+
+    <!-- Conservá los fragments del template si los necesitás -->
     <fragment
         android:id="@+id/nav_transform"
         android:name="com.example.tp4moviles.ui.transform.TransformFragment"

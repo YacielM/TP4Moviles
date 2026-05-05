@@ -11,10 +11,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.tp4moviles.MainActivity;
 import com.example.tp4moviles.R;
 import com.example.tp4moviles.model.Producto;
+import com.example.tp4moviles.viewmodel.MainViewModel;
 
 public class CargarFragment extends Fragment {
 
@@ -65,11 +69,28 @@ public class CargarFragment extends Fragment {
 
         Producto nuevo = new Producto(codigo, descripcion, precio);
         MainActivity.productos.add(nuevo);
+
+        // Actualizar ViewModel compartido para que ListaFragment reciba el cambio
+        MainViewModel vm = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        vm.actualizarLista();
+
         Toast.makeText(getContext(), "Producto agregado", Toast.LENGTH_SHORT).show();
 
-        // limpiar campos
+        // Limpiar campos
         etCodigo.setText("");
         etDescripcion.setText("");
         etPrecio.setText("");
+
+        // Navegar a Lista y limpiar la pila para que el drawer funcione correctamente
+        NavController nav = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+
+        // NavOptions: popUpTo el fragment Cargar para evitar duplicados y dejar la pila consistente
+        androidx.navigation.NavOptions navOptions = new androidx.navigation.NavOptions.Builder()
+                .setPopUpTo(R.id.cargarFragment, true) // elimina CargarFragment de la pila
+                .setLaunchSingleTop(true)
+                .build();
+
+        nav.navigate(R.id.listaFragment, null, navOptions);
     }
+
 }

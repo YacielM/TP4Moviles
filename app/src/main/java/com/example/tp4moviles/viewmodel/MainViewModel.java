@@ -1,5 +1,6 @@
 package com.example.tp4moviles.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,9 +18,11 @@ public class MainViewModel extends ViewModel {
         actualizarLista();
     }
 
-    public MutableLiveData<List<Producto>> getProductos() {
+    // Exponer como LiveData (no MutableLiveData)
+    public LiveData<List<Producto>> getProductos() {
         return productosLive;
     }
+
     public void actualizarLista() {
         List<Producto> copia = new ArrayList<>(MainActivity.productos);
         copia.sort(Comparator.comparing(Producto::getDescripcion, String.CASE_INSENSITIVE_ORDER));
