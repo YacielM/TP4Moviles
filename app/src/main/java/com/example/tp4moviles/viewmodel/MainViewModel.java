@@ -17,7 +17,7 @@ public class MainViewModel extends ViewModel {
         actualizarLista();
     }
 
-    public MutableLiveData<List<Producto>> getProductosLive() {
+    public MutableLiveData<List<Producto>> getProductos() {
         return productosLive;
     }
     public void actualizarLista() {
