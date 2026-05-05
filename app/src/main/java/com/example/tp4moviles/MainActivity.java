@@ -18,9 +18,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tp4moviles.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    // arriba de onCreate, dentro de MainActivity
+    public static ArrayList<com.example.tp4moviles.model.Producto> productos = new ArrayList<>();
+
+    static {
+        productos.add(new com.example.tp4moviles.model.Producto("001", "Leche", 2500));
+        productos.add(new com.example.tp4moviles.model.Producto("002", "Azúcar 1kg", 1200));
+        productos.add(new com.example.tp4moviles.model.Producto("003", "Frasco de Café", 6000));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
